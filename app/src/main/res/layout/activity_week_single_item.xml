@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:background="@color/colorAccent"
+    android:elevation="4dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!--    inside cardview we need 1 image view and 2 text view-->
+    <!--    we use relative layout so as to enclose it within the card view-->
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+<!--        Removed the image view from here because we need letterimageview
+             Also wee need only one text view to display the day-->
+
+<!--        now adding letter image view-->
+
+        <com.example.timetable.Utils.LetterImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/ivLetter"
+            android:layout_margin="8dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvWeek"
+            android:text="Days"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="6dp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/ivLetter"
+            android:textSize="24sp"/>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+
+
+
+<!--copied from mainactivitysingleitem-->

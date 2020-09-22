@@ -5,10 +5,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -45,6 +47,29 @@ public class MainActivity extends AppCompatActivity {
         String[] title = getResources().getStringArray(R.array.Main);                   //initialising the sting array from strings.xml
         String[] description = getResources().getStringArray(R.array.Description);      //initialising the description array from strings.xml
 
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:{
+                        startActivity(new Intent(MainActivity.this,WeekActivity.class));
+                        break;
+                    }
+                    case 1:{
+                        break;
+                    }
+                    case 2: {
+                        break;
+                    }
+                    case 3: {
+                        break;
+                    }
+
+                }
+            }
+        });
+
         SimpleAdapter simpleAdapter = new SimpleAdapter(this, title, description);      //creating an object of the class
         listView.setAdapter(simpleAdapter);                                                     //setting the cardview inside the listview
     }
@@ -60,7 +85,10 @@ public class MainActivity extends AppCompatActivity {
     public class SimpleAdapter extends BaseAdapter{         //BaseAdapter is an abstract class
 
         private Context mContext;                           //intialising a context variable
+
+
         private LayoutInflater layoutInflater;              //Instantiates a layout XML file into its corresponding View objects.
+                                                            //Layout inflator is used for nested layouts
 
         private TextView title;
         private TextView description;
