@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -24,6 +26,11 @@ public class WeekActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ListView listView;
 
+
+    public static SharedPreferences sharedPreferences;  //sharedpreference is used to share data among activity
+    public static String SEL_DAY;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +44,13 @@ public class WeekActivity extends AppCompatActivity {
     private void setupUIViews(){
         toolbar =findViewById(R.id.ToolbarWeek);            //initialising the toolbar and the list view
         listView =findViewById(R.id.lvWeek);
+
+        sharedPreferences=getSharedPreferences("My_day",MODE_PRIVATE);
+
+        //My_day is the data shared
+        // mode private means data can be accessed only within this path
+
+
     }
 
 
@@ -60,12 +74,37 @@ public class WeekActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
-                    case 0:break;
-                    case 1:break;
-                    case 2:break;
-                    case 3:break;
-                    case 4:break;
-                    case 5:break;
+                    case 0: {
+                        startActivity(new Intent(WeekActivity.this,DayDetail.class));
+                        sharedPreferences.edit().putString(SEL_DAY, "Monday").apply();
+                        break;
+                    }
+                    case 1: {
+                        startActivity(new Intent(WeekActivity.this,DayDetail.class));
+                        sharedPreferences.edit().putString(SEL_DAY, "Tuesday").apply();
+                        break;
+                    }
+                    case 2: {
+                        startActivity(new Intent(WeekActivity.this,DayDetail.class));
+                        sharedPreferences.edit().putString(SEL_DAY, "Wednesday").apply();
+                        break;
+                    }
+                    case 3: {
+                        startActivity(new Intent(WeekActivity.this,DayDetail.class));
+                        sharedPreferences.edit().putString(SEL_DAY, "Thursday").apply();
+                        break;
+                    }
+                    case 4: {
+                        startActivity(new Intent(WeekActivity.this,DayDetail.class));
+                        sharedPreferences.edit().putString(SEL_DAY, "Friday").apply();
+                        break;
+                    }
+                    case 5: {
+                        startActivity(new Intent(WeekActivity.this,DayDetail.class));
+                        sharedPreferences.edit().putString(SEL_DAY, "Saturday").apply();
+                        break;
+                    }
+
                     default:break;
 
                 }
@@ -100,9 +139,15 @@ public class WeekActivity extends AppCompatActivity {
         @Override
         public View getView(int position,  View convertView, ViewGroup parent) {
 
-            ViewHolder holder;
+            ViewHolder holder;         //declaring object of ViewHolder class
+
+
             if (convertView==null){
-                holder = new ViewHolder();
+
+
+                holder = new ViewHolder();           //instantiating the object
+
+
                 convertView=layoutInflater.inflate(resource,null);
                 holder.ivLogo=convertView.findViewById(R.id.ivLetter);
                 holder.tvWeek=convertView.findViewById(R.id.tvWeek);
